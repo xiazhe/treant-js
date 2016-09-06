@@ -1121,35 +1121,52 @@
 			if (!this.nodeInnerHTML) {
 
 				// IMAGE
-				if(this.image) {
-					image = document.createElement('img');
+				// if(this.image) {
+				// 	image = document.createElement('img');
 
-					image.src = this.image;
-					node.appendChild(image);
-				}
+				// 	image.src = this.image;
+				// 	node.appendChild(image);
+				// }
 
 				// TEXT
 				if(this.text) {
-					for(var key in this.text) {
-						if(TreeNode.CONFIG.textClass[key]) {
-							var text = document.createElement(this.text[key].href ? 'a' : 'p');
+					var text = document.createElement('p');
+					text.className = 'node-name';
+					text.innerHTML = this.text['name'];
+					text.setAttribute('data-id', this.text['id']);
 
-							// meke an <a> element if required
-							if (this.text[key].href) {
-								text.href = this.text[key].href;
-								if (this.text[key].target) { text.target = this.text[key].target; }
-							}
+					//element.data-id = this.text['id'];
 
-							text.className = TreeNode.CONFIG.textClass[key];
-							text.appendChild(document.createTextNode(
-								this.text[key].val ? this.text[key].val :
-									this.text[key] instanceof Object ? "'val' param missing!" : this.text[key]
-								)
-							);
 
-							node.appendChild(text);
-						}
-					}
+					node.appendChild(text);
+
+					//for(var key in this.text) {
+						//console.log(key);
+						// if(TreeNode.CONFIG.textClass[key]) {
+						// 	var text = document.createElement(this.text[key].href ? 'a' : 'p');
+
+						// 	// meke an <a> element if required
+						// 	if (this.text[key].href) {
+						// 		text.href = this.text[key].href;
+						// 		if (this.text[key].target) { text.target = this.text[key].target; }
+						// 	}
+
+						// 	text.className = TreeNode.CONFIG.textClass[key];
+						// 	text.appendChild(document.createTextNode(
+						// 		this.text[key].val ? this.text[key].val :
+						// 			this.text[key] instanceof Object ? "'val' param missing!" : this.text[key]
+						// 		)
+						// 	);
+
+						// 	//rework
+						// 	//add data-* (id, person, tel...)
+
+						// 	node.appendChild(text);
+						// }
+
+					//}
+
+					
 				}
 
 			} else {
